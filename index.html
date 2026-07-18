@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smell Nice Perfume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --pink:#ff6b9d;
+ --pink-light:#ff8fab;
+ --orange:#ffa94d;
+ --yellow:#ffd43b;
+ --green:#51cf66;
+ --teal:#20c997;
+ --cyan:#22b8cf;
+ --blue:#339af0;
+ --indigo:#5c7cfa;
+ --violet:#845ef7;
+ --bg:#f5f3f0;
+ --bg-alt:#fff;
+ --card:#fff;
+ --card-hover:#faf8f5;
+ --border:#e5e2dd;
+ --text:#1a1a2e;
+ --text-dim:#5a5a6e;
+ --text-muted:#9a9aaa;
+ --nav-bg:rgba(245,243,240,0.95);
+ --scroll-track:var(--bg);
+ --scroll-thumb:linear-gradient(180deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue));
+ --scroll-thumb-hover:linear-gradient(180deg,var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue),var(--indigo));
+}
+[data-theme="dark"]{
+ --bg:#0f0f1a;
+ --bg-alt:#08080f;
+ --card:#151520;
+ --card-hover:#1e1e2e;
+ --border:#2a2a3e;
+ --text:#e8e8f0;
+ --text-dim:#8a8aa0;
+ --text-muted:#5a5a70;
+ --nav-bg:rgba(15,15,26,0.95);
+ --scroll-track:#0a0a14;
+}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--scroll-track);border-radius:5px}
+::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}
+::-webkit-scrollbar-corner{background:var(--scroll-track)}
+*{scrollbar-width:thin;scrollbar-color:var(--pink) var(--scroll-track)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.4s,color 0.4s}
+.page{display:none;animation:fadeIn 0.4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.4s,border-color 0.4s}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{height:45px;width:auto}
+.nav-logo span{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue),var(--indigo),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-link{text-decoration:none;color:var(--text-dim);font-weight:500;font-size:0.85rem;padding:10px 20px;border-radius:12px;transition:all 0.3s;text-transform:uppercase;letter-spacing:0.5px}
+.nav-link:hover{color:var(--text);background:var(--card)}
+.nav-link.active{background:linear-gradient(135deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal));color:#fff;box-shadow:0 4px 20px rgba(255,107,157,0.3)}
+.nav-btn{background:linear-gradient(135deg,var(--pink),var(--orange),var(--yellow));color:#fff;border:none;padding:10px 24px;border-radius:12px;cursor:pointer;font-weight:600;font-size:0.85rem;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,157,0.3)}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(255,107,157,0.4)}
+.nav-btn-outline{background:transparent;border:2px solid var(--border);color:var(--text);box-shadow:none}
+.nav-btn-outline:hover{border-color:var(--pink);color:var(--pink)}
+.theme-toggle{background:var(--card);border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;font-size:1rem}
+.theme-toggle:hover{border-color:var(--pink);color:var(--pink)}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(255,107,157,0.08),transparent 70%);top:10%;left:50%;transform:translateX(-50%);border-radius:50%;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:10px 24px;border-radius:50px;font-size:0.8rem;color:var(--text-dim);margin-bottom:30px;text-transform:uppercase;letter-spacing:1px}
+.hero-badge i{color:var(--pink)}
+.hero h1{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;line-height:1.1;margin-bottom:20px}
+.hero h1 .gradient{background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue),var(--indigo),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--text-dim);max-width:600px;margin:0 auto 40px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-btn-main{background:linear-gradient(135deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal));color:#fff;border:none;padding:16px 36px;border-radius:16px;cursor:pointer;font-weight:700;font-size:1rem;transition:all 0.3s;box-shadow:0 8px 30px rgba(255,107,157,0.35);display:flex;align-items:center;gap:10px}
+.hero-btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,107,157,0.45)}
+.hero-btn-sec{background:var(--card);border:2px solid var(--border);color:var(--text);padding:16px 36px;border-radius:16px;cursor:pointer;font-weight:600;font-size:1rem;transition:all 0.3s;display:flex;align-items:center;gap:10px}
+.hero-btn-sec:hover{border-color:var(--pink);color:var(--pink)}
+
+.section{padding:100px 5%}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;margin-bottom:15px}
+.section-header p{color:var(--text-dim);font-size:1.05rem;max-width:500px;margin:0 auto}
+.empty-state{text-align:center;padding:80px 20px;color:var(--text-muted)}
+.empty-state i{font-size:4rem;margin-bottom:20px;color:var(--border)}
+.empty-state p{font-size:1.1rem}
+
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.4s;position:relative}
+.product-card:hover{transform:translateY(-8px);border-color:var(--pink);box-shadow:0 20px 60px rgba(255,107,157,0.1)}
+.product-img{height:320px;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.product-card:hover .product-img img{transform:scale(1.08)}
+.product-badge{position:absolute;top:16px;left:16px;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;padding:6px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.product-info{padding:24px}
+.product-info h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px}
+.product-info .price{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.product-info .desc{color:var(--text-dim);font-size:0.9rem;margin-bottom:20px;line-height:1.6}
+.product-actions{display:flex;gap:10px}
+.btn-buy{flex:1;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;border:none;padding:12px 20px;border-radius:12px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-buy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,157,0.3)}
+.btn-wish{background:var(--card-hover);border:1px solid var(--border);color:var(--text-dim);width:44px;height:44px;border-radius:12px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center}
+.btn-wish:hover{border-color:var(--pink);color:var(--pink)}
+
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:center;transition:all 0.3s}
+.about-card:hover{border-color:var(--teal);transform:translateY(-5px)}
+.about-card .icon{width:70px;height:70px;background:linear-gradient(135deg,var(--pink),var(--orange));border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:1.8rem;color:#fff}
+.about-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:12px}
+.about-card p{color:var(--text-dim);line-height:1.7}
+
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:center;transition:all 0.3s}
+.contact-card:hover{border-color:var(--cyan)}
+.contact-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem;color:#fff}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:10px}
+.contact-card p{color:var(--text-dim);line-height:1.7;font-size:0.95rem}
+
+.footer{background:var(--card);border-top:1px solid var(--border);padding:60px 5% 30px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;max-width:1200px;margin:0 auto}
+.footer-brand img{height:50px;margin-bottom:16px}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:12px}
+.footer-brand p{color:var(--text-dim);line-height:1.7;font-size:0.9rem}
+.footer-links h4{font-family:'Playfair Display',serif;margin-bottom:20px;color:var(--text);font-size:1.1rem}
+.footer-links a{display:block;color:var(--text-dim);text-decoration:none;margin-bottom:12px;transition:color 0.3s;font-size:0.9rem}
+.footer-links a:hover{color:var(--pink)}
+.footer-bottom{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem}
+
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;backdrop-filter:blur(10px);overflow-y:auto;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px;width:90%;max-width:500px;box-shadow:0 30px 80px rgba(0,0,0,0.2);animation:modalPop 0.3s ease;position:relative;max-height:90vh;overflow-y:auto}
+@keyframes modalPop{from{opacity:0;transform:scale(0.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:16px;right:20px;font-size:1.3rem;cursor:pointer;color:var(--text-muted);transition:color 0.3s;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;z-index:10}
+.modal-close:hover{color:var(--text);background:var(--card-hover)}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:8px}
+.modal-sub{color:var(--text-dim);font-size:0.9rem;margin-bottom:28px}
+
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;font-weight:500;color:var(--text-dim);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;background:var(--bg);border:2px solid var(--border);border-radius:14px;color:var(--text);font-family:'Inter',sans-serif;font-size:0.95rem;transition:all 0.3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,107,157,0.1)}
+.form-group textarea{min-height:100px;resize:vertical}
+.form-group input::placeholder{color:var(--text-muted)}
+
+.toast{position:fixed;bottom:30px;right:30px;background:var(--card);color:var(--text);padding:16px 24px;border-radius:16px;border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,0.15);transform:translateX(150%);transition:transform 0.4s ease;z-index:3000;display:flex;align-items:center;gap:12px;font-weight:500}
+.toast.show{transform:translateX(0)}
+.toast.success{border-color:#51cf66;color:#51cf66}
+.toast.error{border-color:#ff6b6b;color:#ff6b6b}
+.toast.info{border-color:var(--pink)}
+
+.admin-layout{display:flex;min-height:100vh}
+.admin-sidebar{width:280px;background:var(--card);border-right:1px solid var(--border);position:fixed;left:0;top:0;bottom:0;padding:30px 0;overflow-y:auto;z-index:100}
+.admin-logo{text-align:center;padding:0 24px 30px;border-bottom:1px solid var(--border)}
+.admin-logo img{height:55px;margin-bottom:12px}
+.admin-logo h3{font-family:'Playfair Display',serif;font-size:1.3rem;background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.admin-nav{padding:20px 0}
+.admin-nav a{display:flex;align-items:center;gap:14px;padding:14px 24px;color:var(--text-dim);text-decoration:none;transition:all 0.3s;border-left:3px solid transparent;margin:2px 0;font-size:0.9rem;font-weight:500}
+.admin-nav a:hover,.admin-nav a.active{color:var(--text);background:linear-gradient(90deg,rgba(255,107,157,0.08),transparent);border-left-color:var(--pink)}
+.admin-nav a i{width:22px;text-align:center;font-size:1rem}
+.admin-nav .badge-count{background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-left:auto;font-weight:700}
+.admin-main{margin-left:280px;flex:1;padding:30px;background:var(--bg);min-height:100vh;overflow-y:auto}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:35px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.admin-header h1{font-family:'Playfair Display',serif;font-size:1.8rem}
+.admin-user{display:flex;align-items:center;gap:12px}
+.admin-user img{width:42px;height:42px;border-radius:12px;object-fit:cover;border:2px solid var(--border)}
+.admin-user span{color:var(--text-dim);font-size:0.9rem}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-bottom:35px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:all 0.3s}
+.stat-card:hover{border-color:var(--border);transform:translateY(-3px)}
+.stat-card h4{color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.stat-card .value{font-size:2.2rem;font-weight:700;color:var(--text)}
+.stat-card .value.pink{background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;overflow-x:auto}
+.table-wrap table{min-width:700px}
+table{width:100%;border-collapse:collapse}
+th{padding:16px 20px;text-align:left;color:var(--text-muted);font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);background:var(--bg)}
+td{padding:16px 20px;border-bottom:1px solid var(--border);color:var(--text-dim);font-size:0.9rem;vertical-align:middle}
+tr:hover td{background:rgba(255,107,157,0.03)}
+td img{width:50px;height:50px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+td .name{font-weight:600;color:var(--text)}
+td .actions{display:flex;gap:8px}
+.btn-sm{padding:8px 16px;font-size:0.8rem;border-radius:10px;border:none;cursor:pointer;font-weight:600;transition:all 0.3s}
+.btn-del{background:linear-gradient(135deg,#ff6b6b,#ee5a5a);color:#fff}
+.btn-del:hover{box-shadow:0 4px 15px rgba(255,107,107,0.3)}
+.btn-edit{background:var(--card-hover);border:1px solid var(--border);color:var(--text)}
+.btn-edit:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-mark{background:linear-gradient(135deg,var(--green),var(--teal));color:#fff}
+.btn-mark:hover{box-shadow:0 4px 15px rgba(81,207,102,0.3)}
+.btn-approve{background:linear-gradient(135deg,var(--green),var(--teal));color:#fff}
+.btn-approve:hover{box-shadow:0 4px 15px rgba(81,207,102,0.3)}
+.btn-decline{background:linear-gradient(135deg,#ff6b6b,#ee5a5a);color:#fff}
+.btn-decline:hover{box-shadow:0 4px 15px rgba(255,107,107,0.3)}
+
+.badge-status{padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
+.badge-pending{background:rgba(255,171,77,0.15);color:var(--orange)}
+.badge-approved{background:rgba(81,207,102,0.15);color:var(--green)}
+.badge-declined{background:rgba(255,107,107,0.15);color:#ff6b6b}
+.badge-paid{background:rgba(81,207,102,0.15);color:var(--green)}
+.badge-delivered{background:rgba(51,154,240,0.15);color:var(--blue)}
+
+.notif-item{padding:20px 24px;border-bottom:1px solid var(--border);transition:all 0.2s;cursor:pointer}
+.notif-item:hover{background:rgba(255,107,157,0.03)}
+.notif-item.unread{border-left:3px solid var(--pink);background:rgba(255,107,157,0.05)}
+.notif-item h4{font-size:0.95rem;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.notif-item p{font-size:0.85rem;color:var(--text-dim);margin-bottom:6px;line-height:1.5}
+.notif-item .time{font-size:0.75rem;color:var(--text-muted)}
+.notif-dot{width:8px;height:8px;background:var(--pink);border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(255,107,157,0.5)}
+.notif-actions{display:flex;gap:8px;margin-top:12px}
+.notif-reason{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:0.85rem;color:var(--text-dim)}
+.notif-reason strong{color:#ff6b6b}
+
+.pay-product{text-align:center;margin-bottom:28px}
+.pay-product img{width:140px;height:140px;object-fit:cover;border-radius:20px;margin-bottom:16px;border:2px solid var(--border)}
+.pay-product h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px}
+.pay-product .price{font-size:1.8rem;font-weight:700;background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.pay-steps{display:flex;justify-content:center;gap:16px;margin-bottom:28px}
+.pay-step{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-muted);font-weight:500}
+.pay-step.active{color:var(--text)}
+.pay-step i{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.75rem}
+.pay-step.active i{background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;border-color:transparent}
+
+.pay-details{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px}
+.pay-details p{margin-bottom:10px;color:var(--text-dim);font-size:0.9rem}
+.pay-details p strong{color:var(--text)}
+.pay-bank{background:var(--card);border:2px dashed var(--border);border-radius:14px;padding:20px;margin-top:16px;text-align:center}
+.pay-bank p{margin-bottom:6px}
+.pay-bank .amount{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pay-bank .bank-info{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.pay-bank .bank-info p{font-size:0.85rem;color:var(--text-muted)}
+.pay-bank .bank-info p strong{color:var(--text);font-size:0.95rem}
+
+.pay-success{text-align:center;padding:20px}
+.pay-success i{font-size:4rem;margin-bottom:20px;background:linear-gradient(135deg,var(--green),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pay-success h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:10px}
+.pay-success p{color:var(--text-dim);margin-bottom:8px}
+.pay-success .order-id{font-family:monospace;background:var(--bg);padding:8px 16px;border-radius:8px;display:inline-block;margin-top:10px;color:var(--cyan);font-size:0.9rem}
+
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 20px}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:50px;width:100%;max-width:420px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.login-logo{width:80px;height:80px;border-radius:20px;object-fit:cover;margin:0 auto 24px;border:3px solid var(--border)}
+.login-card h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:8px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue),var(--indigo),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.login-card .subtitle{color:var(--text-muted);font-size:0.9rem;margin-bottom:32px;text-transform:uppercase;letter-spacing:2px}
+.login-form{text-align:left}
+.login-form .form-group{margin-bottom:18px}
+.login-form .form-group label{font-size:0.8rem;letter-spacing:1.5px}
+.login-form .form-group input{padding:16px 20px;border-radius:16px;font-size:1rem}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--teal),var(--cyan),var(--blue));color:#fff;border:none;padding:16px;border-radius:16px;cursor:pointer;font-weight:700;font-size:1rem;transition:all 0.3s;box-shadow:0 8px 30px rgba(255,107,157,0.35);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,107,157,0.45)}
+.login-footer{margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
+.login-footer p{color:var(--text-muted);font-size:0.85rem;margin-bottom:12px}
+.admin-login-link{color:var(--pink);font-weight:600;cursor:pointer;font-size:0.9rem;display:inline-flex;align-items:center;gap:6px;transition:all 0.3s}
+.admin-login-link:hover{color:var(--orange)}
+.switch-link{text-align:center;margin-top:20px;color:var(--text-muted);font-size:0.9rem}
+.switch-link span{color:var(--pink);font-weight:600;cursor:pointer}
+.switch-link span:hover{text-decoration:underline}
+
+.upload-area{border:2px dashed var(--border);border-radius:16px;padding:40px 20px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--bg);position:relative}
+.upload-area:hover{border-color:var(--pink);background:rgba(255,107,157,0.03)}
+.upload-area i{font-size:2.5rem;color:var(--text-muted);margin-bottom:12px}
+.upload-area p{color:var(--text-muted);font-size:0.9rem}
+.upload-area p strong{color:var(--text);display:block;margin-bottom:4px}
+.upload-area input[type="file"]{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.upload-preview{width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-top:16px;border:1px solid var(--border)}
+.upload-preview.hidden{display:none}
+
+.hidden{display:none !important}
+.mobile-menu{display:none;font-size:1.4rem;cursor:pointer;color:var(--text);padding:8px;border-radius:10px;transition:background 0.3s}
+.mobile-menu:hover{background:var(--card)}
+
+.order-status-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px;text-align:center}
+.order-status-card.approved{border-color:var(--green)}
+.order-status-card.declined{border-color:#ff6b6b}
+.order-status-card i{font-size:3rem;margin-bottom:12px}
+.order-status-card.approved i{color:var(--green)}
+.order-status-card.declined i{color:#ff6b6b}
+.order-status-card h4{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:8px}
+.order-status-card p{color:var(--text-dim);font-size:0.9rem}
+.order-status-card .reason{background:var(--bg);border-radius:10px;padding:12px;margin-top:12px;font-size:0.85rem;color:var(--text-dim)}
+.order-status-card .reason strong{color:#ff6b6b}
+
+.notifications-scroll{max-height:70vh;overflow-y:auto;border-radius:20px;border:1px solid var(--border)}
+
+@media(max-width:768px){
+.admin-sidebar{width:100%;position:relative;height:auto;border-right:none;border-bottom:1px solid var(--border)}
+.admin-main{margin-left:0}
+.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--card);flex-direction:column;padding:20px;border-bottom:1px solid var(--border);gap:8px}
+.nav-links.show{display:flex}
+.mobile-menu{display:block}
+.hero h1{font-size:2.8rem}
+.products-grid{grid-template-columns:1fr}
+.section{padding:60px 5%}
+.login-card{padding:35px 25px}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+ <nav class="navbar" id="mainNav">
+   <div class="nav-logo">
+     <img src="https://qu.ax/99q1R" alt="Smell Nice Perfume" onerror="this.style.display='none'">
+     <span>Smell Nice</span>
+   </div>
+   <div class="nav-links" id="navLinks">
+     <a href="#" class="nav-link active" onclick="showPage('home',this)">Home</a>
+     <a href="#" class="nav-link" onclick="showPage('products',this)">Perfumes</a>
+     <a href="#" class="nav-link" onclick="showPage('about',this)">About</a>
+     <a href="#" class="nav-link" onclick="showPage('contact',this)">Contact</a>
+     <a href="#" class="nav-link hidden" id="adminNavLink" onclick="showPage('admin',this)">Admin</a>
+     <a href="#" class="nav-link hidden" id="ordersNavLink" onclick="showPage('myOrders',this)">My Orders</a>
+     <button class="nav-btn" id="loginNavBtn" onclick="showPage('login',null)">Login</button>
+     <button class="nav-btn nav-btn-outline hidden" id="logoutNavBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span id="navUserName"></span></button>
+     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
+   </div>
+   <div class="mobile-menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+ </nav>
+
+ <div id="home" class="page active">
+   <section class="hero">
+     <div>
+       <div class="hero-badge"><i class="fas fa-sparkles"></i> Premium Artisan Perfumery</div>
+       <h1>Discover Your<br><span class="gradient">Signature Scent</span></h1>
+       <p>Curated luxury fragrances from around the world. Authentic, elegant, and crafted for the distinguished individual.</p>
+       <div class="hero-btns">
+         <button class="hero-btn-main" onclick="showPage('products',null)"><i class="fas fa-shopping-bag"></i> Shop Now</button>
+         <button class="hero-btn-sec" onclick="showPage('about',null)"><i class="fas fa-info-circle"></i> Learn More</button>
+       </div>
+     </div>
+   </section>
+   <section class="section">
+     <div class="section-header">
+       <h2>Featured Collection</h2>
+       <p>Handpicked fragrances just for you</p>
+     </div>
+     <div class="products-grid" id="featuredProducts"></div>
+   </section>
+ </div>
+
+ <div id="products" class="page">
+   <section class="section">
+     <div class="section-header">
+       <h2>Our Collection</h2>
+       <p>Browse our full range of premium perfumes</p>
+     </div>
+     <div class="products-grid" id="allProducts"></div>
+   </section>
+ </div>
+
+ <div id="about" class="page">
+   <section class="section">
+     <div class="section-header">
+       <h2>About Us</h2>
+       <p>The story behind Smell Nice Perfume</p>
+     </div>
+     <div class="about-grid">
+       <div class="about-card">
+         <div class="icon"><i class="fas fa-gem"></i></div>
+         <h3>Premium Quality</h3>
+         <p>Every bottle in our collection is 100% authentic and sourced directly from trusted manufacturers worldwide.</p>
+       </div>
+       <div class="about-card">
+         <div class="icon"><i class="fas fa-truck"></i></div>
+         <h3>Fast Delivery</h3>
+         <p>We deliver across Lagos and beyond. Your fragrance arrives at your doorstep in perfect condition.</p>
+       </div>
+       <div class="about-card">
+         <div class="icon"><i class="fas fa-headset"></i></div>
+         <h3>24/7 Support</h3>
+         <p>Our team is always available to help you find the perfect scent. Reach us anytime, anywhere.</p>
+       </div>
+     </div>
+   </section>
+ </div>
+
+ <div id="contact" class="page">
+   <section class="section">
+     <div class="section-header">
+       <h2>Get In Touch</h2>
+       <p>We would love to hear from you</p>
+     </div>
+     <div class="contact-grid">
+       <div class="contact-card">
+         <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+         <h3>Visit Us</h3>
+         <p>Ikola Bus Stop<br>Alimosho Local Government<br>Lagos State, Nigeria</p>
+       </div>
+       <div class="contact-card">
+         <div class="contact-icon"><i class="fas fa-phone"></i></div>
+         <h3>Call Us</h3>
+         <p>09065637452</p>
+       </div>
+       <div class="contact-card">
+         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+         <h3>Email Us</h3>
+         <p>lateefq279@gmail.com</p>
+       </div>
+     </div>
+   </section>
+ </div>
+
+ <div id="login" class="page">
+   <div class="login-page">
+     <div class="login-card" id="userLoginCard">
+       <img src="https://qu.ax/99q1R" class="login-logo" alt="Logo" onerror="this.style.display='none'">
+       <h2>Welcome Back</h2>
+       <p class="subtitle">Login to your account</p>
+       <form class="login-form" onsubmit="handleLogin(event)">
+         <div class="form-group">
+           <label>Email</label>
+           <input type="email" id="loginEmail" required placeholder="your@email.com">
+         </div>
+         <div class="form-group">
+           <label>Password</label>
+           <input type="password" id="loginPassword" required placeholder="Enter your password">
+         </div>
+         <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+       </form>
+       <div class="switch-link">
+         Don't have an account? <span onclick="showPage('signup',null)">Sign Up</span>
+       </div>
+       <div class="login-footer">
+         <p>Are you an admin?</p>
+         <div class="admin-login-link" onclick="showAdminLogin()"><i class="fas fa-shield-alt"></i> Admin Login</div>
+       </div>
+     </div>
+
+     <div class="login-card hidden" id="adminLoginCard">
+       <img src="https://qu.ax/99q1R" class="login-logo" alt="Logo" onerror="this.style.display='none'">
+       <h2>Admin Access</h2>
+       <p class="subtitle">Enter admin credentials</p>
+       <form class="login-form" onsubmit="handleAdminLogin(event)">
+         <div class="form-group">
+           <label>Admin Email</label>
+           <input type="email" id="adminEmail" required placeholder="admin@smellnice.com">
+         </div>
+         <div class="form-group">
+           <label>Admin Password</label>
+           <input type="password" id="adminPassword" required placeholder="Enter admin password">
+         </div>
+         <button type="submit" class="login-btn"><i class="fas fa-lock"></i> Access Dashboard</button>
+       </form>
+       <div class="switch-link">
+         <span onclick="showUserLogin()">Back to User Login</span>
+       </div>
+       <div class="login-footer">
+         <p style="font-size:0.8rem;color:var(--text-muted)">Default: admin@smellnice.com / admin123</p>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div id="signup" class="page">
+   <div class="login-page">
+     <div class="login-card">
+       <img src="https://qu.ax/99q1R" class="login-logo" alt="Logo" onerror="this.style.display='none'">
+       <h2>Create Account</h2>
+       <p class="subtitle">Join Smell Nice Perfume</p>
+       <form class="login-form" onsubmit="handleSignup(event)">
+         <div class="form-group">
+           <label>Full Name</label>
+           <input type="text" id="signupName" required placeholder="Your full name">
+         </div>
+         <div class="form-group">
+           <label>Email</label>
+           <input type="email" id="signupEmail" required placeholder="your@email.com">
+         </div>
+         <div class="form-group">
+           <label>Phone Number</label>
+           <input type="tel" id="signupPhone" required placeholder="09065637452">
+         </div>
+         <div class="form-group">
+           <label>Password</label>
+           <input type="password" id="signupPassword" required placeholder="Create a password">
+         </div>
+         <button type="submit" class="login-btn"><i class="fas fa-user-plus"></i> Sign Up</button>
+       </form>
+       <div class="switch-link">
+         Already have an account? <span onclick="showPage('login',null)">Login</span>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div id="myOrders" class="page">
+   <section class="section">
+     <div class="section-header">
+       <h2>My Orders</h2>
+       <p>Track your payment status</p>
+     </div>
+     <div id="userOrdersList" style="max-height:70vh;overflow-y:auto;padding-right:10px"></div>
+   </section>
+ </div>
+
+ <div id="admin" class="page">
+   <div class="admin-layout">
+     <div class="admin-sidebar">
+       <div class="admin-logo">
+         <img src="https://qu.ax/99q1R" alt="Logo" onerror="this.style.display='none'">
+         <h3>Admin Panel</h3>
+       </div>
+       <div class="admin-nav">
+         <a href="#" class="active" onclick="showAdminTab('dashboard',this)"><i class="fas fa-chart-line"></i> Dashboard</a>
+         <a href="#" onclick="showAdminTab('products',this)"><i class="fas fa-spray-can"></i> Products</a>
+         <a href="#" onclick="showAdminTab('orders',this)"><i class="fas fa-shopping-bag"></i> Orders</a>
+         <a href="#" onclick="showAdminTab('notifications',this)"><i class="fas fa-bell"></i> Notifications <span id="notifBadge" class="badge-count hidden">0</span></a>
+         <a href="#" onclick="showAdminTab('users',this)"><i class="fas fa-users"></i> Users</a>
+         <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+       </div>
+     </div>
+     <div class="admin-main">
+       <div class="admin-header">
+         <h1 id="adminTitle">Dashboard</h1>
+         <div class="admin-user">
+           <span id="adminUserName">Admin</span>
+           <img src="https://qu.ax/99q1R" alt="" onerror="this.src='https://via.placeholder.com/42'">
+         </div>
+       </div>
+
+       <div id="adminDashboard" class="admin-tab">
+         <div class="stats-grid">
+           <div class="stat-card">
+             <h4>Total Products</h4>
+             <div class="value pink" id="statProducts">0</div>
+           </div>
+           <div class="stat-card">
+             <h4>Total Orders</h4>
+             <div class="value" id="statOrders">0</div>
+           </div>
+           <div class="stat-card">
+             <h4>Pending</h4>
+             <div class="value pink" id="statPending">0</div>
+           </div>
+           <div class="stat-card">
+             <h4>Total Users</h4>
+             <div class="value" id="statUsers">0</div>
+           </div>
+         </div>
+       </div>
+
+       <div id="adminProducts" class="admin-tab hidden">
+         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
+           <h2 style="font-family:'Playfair Display',serif">Manage Products</h2>
+           <button class="nav-btn" onclick="openAddProductModal()"><i class="fas fa-plus"></i> Add Product</button>
+         </div>
+         <div class="table-wrap">
+           <table>
+             <thead>
+               <tr>
+                 <th>Image</th>
+                 <th>Name</th>
+                 <th>Price</th>
+                 <th>Category</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody id="adminProductsTable"></tbody>
+           </table>
+         </div>
+       </div>
+
+       <div id="adminOrders" class="admin-tab hidden">
+         <h2 style="font-family:'Playfair Display',serif;margin-bottom:28px">Customer Orders</h2>
+         <div class="table-wrap">
+           <table>
+             <thead>
+               <tr>
+                 <th>Customer</th>
+                 <th>Product</th>
+                 <th>Amount</th>
+                 <th>Status</th>
+                 <th>Date</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody id="adminOrdersTable"></tbody>
+           </table>
+         </div>
+       </div>
+
+       <div id="adminNotifications" class="admin-tab hidden">
+         <h2 style="font-family:'Playfair Display',serif;margin-bottom:28px">Payment Notifications</h2>
+         <div class="notifications-scroll" id="notificationsList"></div>
+       </div>
+
+       <div id="adminUsers" class="admin-tab hidden">
+         <h2 style="font-family:'Playfair Display',serif;margin-bottom:28px">Registered Users</h2>
+         <div class="table-wrap">
+           <table>
+             <thead>
+               <tr>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Phone</th>
+                 <th>Joined</th>
+               </tr>
+             </thead>
+             <tbody id="adminUsersTable"></tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <footer class="footer" id="mainFooter">
+   <div class="footer-grid">
+     <div class="footer-brand">
+       <img src="https://qu.ax/99q1R" alt="Logo" onerror="this.style.display='none'">
+       <h3>Smell Nice Perfume</h3>
+       <p>Premium fragrances delivered to your doorstep. Authentic scents for the distinguished individual.</p>
+     </div>
+     <div class="footer-links">
+       <h4>Quick Links</h4>
+       <a href="#" onclick="showPage('home',null)">Home</a>
+       <a href="#" onclick="showPage('products',null)">Perfumes</a>
+       <a href="#" onclick="showPage('about',null)">About</a>
+       <a href="#" onclick="showPage('contact',null)">Contact</a>
+     </div>
+     <div class="footer-links">
+       <h4>Contact</h4>
+       <a href="#"><i class="fas fa-phone"></i> 09065637452</a>
+       <a href="#"><i class="fas fa-envelope"></i> lateefq279@gmail.com</a>
+       <a href="#"><i class="fas fa-map-marker-alt"></i> Ikola Bus Stop, Lagos</a>
+     </div>
+   </div>
+   <div class="footer-bottom">
+     <p> Smell Nice Perfume. All rights reserved.</p>
+   </div>
+ </footer>
+</div>
+
+<div class="modal-overlay" id="addProductModal">
+ <div class="modal" style="max-width:500px">
+   <span class="modal-close" onclick="closeAddProductModal()"><i class="fas fa-times"></i></span>
+   <h2>Add New Perfume</h2>
+   <p class="modal-sub">Fill in the details below</p>
+   <form onsubmit="handleAddProduct(event)">
+     <div class="form-group">
+       <label>Perfume Name</label>
+       <input type="text" id="prodName" required placeholder="e.g. Chanel No. 5">
+     </div>
+     <div class="form-group">
+       <label>Price</label>
+       <input type="number" id="prodPrice" required placeholder="25000">
+     </div>
+     <div class="form-group">
+       <label>Product Image</label>
+       <div class="upload-area" onclick="document.getElementById('prodFile').click()">
+         <input type="file" id="prodFile" accept="image/*" onchange="previewUpload(this)">
+         <i class="fas fa-cloud-upload-alt"></i>
+         <p><strong>Click to upload</strong></p>
+         <p>or drag and drop your image here</p>
+         <img id="uploadPreview" class="upload-preview hidden" alt="Preview">
+       </div>
+     </div>
+     <div class="form-group">
+       <label>Category</label>
+       <select id="prodCategory">
+         <option value="Men">Men</option>
+         <option value="Women">Women</option>
+         <option value="Unisex">Unisex</option>
+       </select>
+     </div>
+     <div class="form-group">
+       <label>Description</label>
+       <textarea id="prodDesc" placeholder="Describe this fragrance..."></textarea>
+     </div>
+     <button type="submit" class="login-btn"><i class="fas fa-plus"></i> Add Perfume</button>
+   </form>
+ </div>
+</div>
+
+<div class="modal-overlay" id="declineModal">
+ <div class="modal" style="max-width:450px">
+   <span class="modal-close" onclick="closeDeclineModal()"><i class="fas fa-times"></i></span>
+   <h2><i class="fas fa-times-circle" style="color:#ff6b6b;margin-right:8px"></i>Decline Payment</h2>
+   <p class="modal-sub">Enter reason for declining this payment</p>
+   <form onsubmit="handleDecline(event)">
+     <div class="form-group">
+       <label>Reason</label>
+       <textarea id="declineReason" required placeholder="e.g. Payment not received, Wrong amount, etc..." style="min-height:120px"></textarea>
+     </div>
+     <button type="submit" class="login-btn" style="background:linear-gradient(135deg,#ff6b6b,#ee5a5a)"><i class="fas fa-paper-plane"></i> Send Decline</button>
+   </form>
+ </div>
+</div>
+
+<div class="modal-overlay" id="payModal">
+ <div class="modal" style="max-width:480px">
+   <span class="modal-close" onclick="closePayModal()"><i class="fas fa-times"></i></span>
+   <div id="payStep1">
+     <div class="pay-product">
+       <img id="payProductImg" src="" alt="">
+       <h3 id="payProductName"></h3>
+       <div class="price" id="payProductPrice"></div>
+     </div>
+     <div class="pay-steps">
+       <div class="pay-step active"><i class="fas fa-check"></i> Review</div>
+       <div class="pay-step"><i class="fas fa-university"></i> Pay</div>
+       <div class="pay-step"><i class="fas fa-receipt"></i> Confirm</div>
+     </div>
+     <div class="pay-details">
+       <p><strong>Product:</strong> <span id="payDetailName"></span></p>
+       <p><strong>Price:</strong> <span id="payDetailPrice"></span></p>
+       <p><strong>Delivery:</strong> Free (Lagos)</p>
+       <div class="pay-bank">
+         <p><strong>Bank Transfer</strong></p>
+         <p class="amount" id="payBankAmount"></p>
+         <div class="bank-info">
+           <p><strong>Bank:</strong> PalmPay</p>
+           <p><strong>Account Name:</strong> Smell Nice Perfumes</p>
+           <p><strong>Account Number:</strong> 09065637452</p>
+         </div>
+         <p style="margin-top:12px;font-size:0.8rem">Pay and click "I Have Paid" to notify admin</p>
+       </div>
+     </div>
+     <button class="login-btn" onclick="confirmPayment()"><i class="fas fa-check-circle"></i> I Have Paid</button>
+   </div>
+   <div id="payStep2" class="hidden pay-success">
+     <i class="fas fa-check-circle"></i>
+     <h3>Payment Submitted!</h3>
+     <p>Admin has been notified. You will receive confirmation shortly.</p>
+     <p style="font-size:0.85rem;color:var(--text-muted)">Order ID:</p>
+     <div class="order-id" id="payOrderId"></div>
+     <button class="hero-btn-sec" style="margin-top:24px" onclick="closePayModal()">Close</button>
+   </div>
+ </div>
+</div>
+
+<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toastMsg">Message</span></div>
+
+<script>
+const DB_KEYS={users:'snp_users',products:'snp_products',orders:'snp_orders',notifications:'snp_notifications',currentUser:'snp_currentUser'};
+const ADMIN_EMAIL='admin@smellnice.com';
+const ADMIN_PASS='admin123';
+let uploadedImageBase64='';
+let currentDeclineOrderId='';
+
+function initDB(){
+ if(!localStorage.getItem(DB_KEYS.products)){
+   localStorage.setItem(DB_KEYS.products,JSON.stringify([]));
+ }
+ if(!localStorage.getItem(DB_KEYS.users)){
+   localStorage.setItem(DB_KEYS.users,JSON.stringify([
+     {id:1,name:'Admin',email:ADMIN_EMAIL,phone:'09065637452',password:ADMIN_PASS,isAdmin:true,createdAt:new Date().toISOString()}
+   ]));
+ }
+ if(!localStorage.getItem(DB_KEYS.orders))localStorage.setItem(DB_KEYS.orders,JSON.stringify([]));
+ if(!localStorage.getItem(DB_KEYS.notifications))localStorage.setItem(DB_KEYS.notifications,JSON.stringify([]));
+}
+
+function getData(key){return JSON.parse(localStorage.getItem(key)||'[]')}
+function setData(key,data){localStorage.setItem(key,JSON.stringify(data))}
+
+function showToast(msg,type='info'){
+ const t=document.getElementById('toast');
+ const icons={info:'fa-info-circle',success:'fa-check-circle',error:'fa-exclamation-circle'};
+ t.innerHTML=`<i class="fas ${icons[type]||icons.info}"></i><span>${msg}</span>`;
+ t.className='toast show '+type;
+ setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function toggleTheme(){
+ const html=document.documentElement;
+ const btn=document.getElementById('themeBtn');
+ if(html.getAttribute('data-theme')==='dark'){
+   html.removeAttribute('data-theme');
+   btn.innerHTML='<i class="fas fa-moon"></i>';
+   localStorage.setItem('snp_theme','light');
+ }else{
+   html.setAttribute('data-theme','dark');
+   btn.innerHTML='<i class="fas fa-sun"></i>';
+   localStorage.setItem('snp_theme','dark');
+ }
+}
+
+function loadTheme(){
+ const theme=localStorage.getItem('snp_theme');
+ const btn=document.getElementById('themeBtn');
+ if(theme==='dark'){
+   document.documentElement.setAttribute('data-theme','dark');
+   btn.innerHTML='<i class="fas fa-sun"></i>';
+ }
+}
+
+function showPage(pageId,el){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(pageId).classList.add('active');
+ window.scrollTo(0,0);
+ if(el){
+   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+   el.classList.add('active');
+ }
+ if(pageId==='products')renderAllProducts();
+ if(pageId==='home')renderFeatured();
+ if(pageId==='login'){
+   showUserLogin();
+ }
+ if(pageId==='myOrders')renderUserOrders();
+ if(pageId==='admin'){
+   const user=JSON.parse(localStorage.getItem(DB_KEYS.currentUser)||'null');
+   if(!user||!user.isAdmin){
+     showPage('login',null);
+     showToast('Please login as admin first','error');
+     return;
+   }
+   updateAdminStats();renderAdminProducts();renderAdminOrders();renderNotifications();renderAdminUsers();
+ }
+}
+
+function showAdminLogin(){
+ document.getElementById('userLoginCard').classList.add('hidden');
+ document.getElementById('adminLoginCard').classList.remove('hidden');
+}
+
+function showUserLogin(){
+ document.getElementById('adminLoginCard').classList.add('hidden');
+ document.getElementById('userLoginCard').classList.remove('hidden');
+}
+
+function renderFeatured(){
+ const products=getData(DB_KEYS.products).slice(0,4);
+ const container=document.getElementById('featuredProducts');
+ if(!products.length){
+   container.innerHTML='<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-box-open"></i><p>No products available yet. Check back soon!</p></div>';
+   return;
+ }
+ container.innerHTML=products.map(p=>createProductCard(p)).join('');
+}
+
+function renderAllProducts(){
+ const products=getData(DB_KEYS.products);
+ const container=document.getElementById('allProducts');
+ if(!products.length){
+   container.innerHTML='<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-box-open"></i><p>No products available yet. Our admin is curating the finest collection for you!</p></div>';
+   return;
+ }
+ container.innerHTML=products.map(p=>createProductCard(p)).join('');
+}
+
+function createProductCard(p){
+ return `
+   <div class="product-card">
+     <div class="product-img">
+       <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1541643600914-78b084683601?w=400'">
+       <span class="product-badge">${p.category}</span>
+     </div>
+     <div class="product-info">
+       <h3>${p.name}</h3>
+       <div class="price">₦${p.price.toLocaleString()}</div>
+       <p class="desc">${p.desc||'Premium luxury fragrance'}</p>
+       <div class="product-actions">
+         <button class="btn-buy" onclick="openPayModal(${p.id})"><i class="fas fa-credit-card"></i> Buy Now</button>
+         <button class="btn-wish"><i class="fas fa-heart"></i></button>
+       </div>
+     </div>
+   </div>`;
+}
+
+function handleLogin(e){
+ e.preventDefault();
+ const email=document.getElementById('loginEmail').value;
+ const pass=document.getElementById('loginPassword').value;
+ const users=getData(DB_KEYS.users);
+ const user=users.find(u=>u.email===email&&u.password===pass&&!u.isAdmin);
+ if(!user){showToast('Invalid email or password','error');return}
+ localStorage.setItem(DB_KEYS.currentUser,JSON.stringify(user));
+ updateNav();
+ showToast('Welcome back, '+user.name+'!','success');
+ showPage('home',document.querySelector('.nav-link'));
+}
+
+function handleAdminLogin(e){
+ e.preventDefault();
+ const email=document.getElementById('adminEmail').value;
+ const pass=document.getElementById('adminPassword').value;
+ const users=getData(DB_KEYS.users);
+ const user=users.find(u=>u.email===email&&u.password===pass&&u.isAdmin);
+ if(!user){showToast('Invalid admin credentials','error');return}
+ localStorage.setItem(DB_KEYS.currentUser,JSON.stringify(user));
+ updateNav();
+ showToast('Welcome Admin!','success');
+ showPage('admin',null);
+}
+
+function handleSignup(e){
+ e.preventDefault();
+ const name=document.getElementById('signupName').value;
+ const email=document.getElementById('signupEmail').value;
+ const phone=document.getElementById('signupPhone').value;
+ const pass=document.getElementById('signupPassword').value;
+ const users=getData(DB_KEYS.users);
+ if(users.find(u=>u.email===email)){showToast('Email already registered','error');return}
+ const newUser={id:Date.now(),name,email,phone,password:pass,isAdmin:false,createdAt:new Date().toISOString()};
+ users.push(newUser);
+ setData(DB_KEYS.users,users);
+ localStorage.setItem(DB_KEYS.currentUser,JSON.stringify(newUser));
+ updateNav();
+ showToast('Account created successfully!','success');
+ showPage('home',document.querySelector('.nav-link'));
+}
+
+function logout(){
+ localStorage.removeItem(DB_KEYS.currentUser);
+ updateNav();
+ showPage('home',document.querySelector('.nav-link'));
+ showToast('Logged out','info');
+}
+
+function updateNav(){
+ const user=JSON.parse(localStorage.getItem(DB_KEYS.currentUser)||'null');
+ const loginBtn=document.getElementById('loginNavBtn');
+ const logoutBtn=document.getElementById('logoutNavBtn');
+ const adminLink=document.getElementById('adminNavLink');
+ const ordersLink=document.getElementById('ordersNavLink');
+ const navUserName=document.getElementById('navUserName');
+ if(user){
+   loginBtn.classList.add('hidden');
+   logoutBtn.classList.remove('hidden');
+   navUserName.textContent=user.name;
+   if(user.isAdmin){
+     adminLink.classList.remove('hidden');
+     ordersLink.classList.add('hidden');
+     document.getElementById('adminUserName').textContent=user.name;
+   }else{
+     adminLink.classList.add('hidden');
+     ordersLink.classList.remove('hidden');
+   }
+ }else{
+   loginBtn.classList.remove('hidden');
+   logoutBtn.classList.add('hidden');
+   adminLink.classList.add('hidden');
+   ordersLink.classList.add('hidden');
+ }
+}
+
+function previewUpload(input){
+ const preview=document.getElementById('uploadPreview');
+ const file=input.files[0];
+ if(!file)return;
+ const reader=new FileReader();
+ reader.onload=function(e){
+   uploadedImageBase64=e.target.result;
+   preview.src=e.target.result;
+   preview.classList.remove('hidden');
+ };
+ reader.readAsDataURL(file);
+}
+
+function openAddProductModal(){
+ uploadedImageBase64='';
+ document.getElementById('uploadPreview').classList.add('hidden');
+ document.getElementById('addProductModal').classList.add('active');
+}
+function closeAddProductModal(){document.getElementById('addProductModal').classList.remove('active')}
+
+function handleAddProduct(e){
+ e.preventDefault();
+ if(!uploadedImageBase64){
+   showToast('Please upload a product image','error');
+   return;
+ }
+ const products=getData(DB_KEYS.products);
+ const newProduct={
+   id:Date.now(),
+   name:document.getElementById('prodName').value,
+   price:parseInt(document.getElementById('prodPrice').value),
+   image:uploadedImageBase64,
+   category:document.getElementById('prodCategory').value,
+   desc:document.getElementById('prodDesc').value
+ };
+ products.push(newProduct);
+ setData(DB_KEYS.products,products);
+ closeAddProductModal();
+ renderAdminProducts();
+ updateAdminStats();
+ showToast('Product added successfully!','success');
+ e.target.reset();
+ uploadedImageBase64='';
+ document.getElementById('uploadPreview').classList.add('hidden');
+}
+
+function renderAdminProducts(){
+ const products=getData(DB_KEYS.products);
+ const tbody=document.getElementById('adminProductsTable');
+ tbody.innerHTML=products.length?products.map(p=>`
+   <tr>
+     <td><img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/50'"></td>
+     <td><span class="name">${p.name}</span></td>
+     <td>₦${p.price.toLocaleString()}</td>
+     <td><span class="badge-status badge-pending">${p.category}</span></td>
+     <td class="actions">
+       <button class="btn-sm btn-del" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i></button>
+     </td>
+   </tr>
+ `).join(''):'<tr><td colspan="5" style="text-align:center;padding:50px;color:var(--text-muted)"><i class="fas fa-box-open" style="font-size:2rem;display:block;margin-bottom:10px"></i>No products yet. Add your first perfume!</td></tr>';
+}
+
+function deleteProduct(id){
+ if(!confirm('Delete this product?'))return;
+ const products=getData(DB_KEYS.products).filter(p=>p.id!==id);
+ setData(DB_KEYS.products,products);
+ renderAdminProducts();
+ updateAdminStats();
+ showToast('Product deleted','info');
+}
+
+let currentPayProduct=null;
+
+function openPayModal(productId){
+ const user=JSON.parse(localStorage.getItem(DB_KEYS.currentUser)||'null');
+ if(!user){showPage('login',null);showToast('Please login first to buy','error');return}
+ const product=getData(DB_KEYS.products).find(p=>p.id===productId);
+ if(!product)return;
+ currentPayProduct=product;
+ document.getElementById('payProductImg').src=product.image;
+ document.getElementById('payProductName').textContent=product.name;
+ document.getElementById('payProductPrice').textContent='₦'+product.price.toLocaleString();
+ document.getElementById('payDetailName').textContent=product.name;
+ document.getElementById('payDetailPrice').textContent='₦'+product.price.toLocaleString();
+ document.getElementById('payBankAmount').textContent='₦'+product.price.toLocaleString();
+ document.getElementById('payStep1').classList.remove('hidden');
+ document.getElementById('payStep2').classList.add('hidden');
+ document.getElementById('payModal').classList.add('active');
+}
+
+function closePayModal(){document.getElementById('payModal').classList.remove('active')}
+
+function confirmPayment(){
+ const user=JSON.parse(localStorage.getItem(DB_KEYS.currentUser)||'null');
+ if(!user||!currentPayProduct)return;
+ const orderId='SNP-'+Date.now();
+ const order={
+   id:orderId,
+   userId:user.id,
+   userName:user.name,
+   userEmail:user.email,
+   userPhone:user.phone,
+   productId:currentPayProduct.id,
+   productName:currentPayProduct.name,
+   amount:currentPayProduct.price,
+   status:'pending',
+   approvalStatus:'pending',
+   declineReason:'',
+   createdAt:new Date().toISOString()
+ };
+ const orders=getData(DB_KEYS.orders);
+ orders.push(order);
+ setData(DB_KEYS.orders,orders);
+
+ const notif={
+   id:Date.now(),
+   type:'payment',
+   title:'New Payment Alert',
+   message:`${user.name} paid ₦${currentPayProduct.price.toLocaleString()} for ${currentPayProduct.name}`,
+   orderId:orderId,
+   userEmail:user.email,
+   userPhone:user.phone,
+   read:false,
+   createdAt:new Date().toISOString()
+ };
+ const notifs=getData(DB_KEYS.notifications);
+ notifs.unshift(notif);
+ setData(DB_KEYS.notifications,notifs);
+
+ document.getElementById('payOrderId').textContent=orderId;
+ document.getElementById('payStep1').classList.add('hidden');
+ document.getElementById('payStep2').classList.remove('hidden');
+ updateAdminStats();
+ showToast('Payment notification sent to admin!','success');
+}
+
+function openDeclineModal(orderId){
+ currentDeclineOrderId=orderId;
+ document.getElementById('declineReason').value='';
+ document.getElementById('declineModal').classList.add('active');
+}
+
+function closeDeclineModal(){
+ document.getElementById('declineModal').classList.remove('active');
+ currentDeclineOrderId='';
+}
+
+function handleDecline(e){
+ e.preventDefault();
+ const reason=document.getElementById('declineReason').value;
+ if(!reason){showToast('Please enter a reason','error');return}
+ 
+ const orders=getData(DB_KEYS.orders).map(o=>{
+   if(o.id===currentDeclineOrderId){
+     return{...o,approvalStatus:'declined',declineReason:reason,status:'declined'};
+   }
+   return o;
+ });
+ setData(DB_KEYS.orders,orders);
+ 
+ const notifs=getData(DB_KEYS.notifications);
+ notifs.unshift({
+   id:Date.now(),
+   type:'decline',
+   title:'Payment Declined',
+   message:`Order ${currentDeclineOrderId} declined. Reason: ${reason}`,
+   orderId:currentDeclineOrderId,
+   read:false,
+   createdAt:new Date().toISOString()
+ });
+ setData(DB_KEYS.notifications,notifs);
+ 
+ closeDeclineModal();
+ renderAdminOrders();
+ renderNotifications();
+ updateAdminStats();
+ showToast('Payment declined with reason','success');
+}
+
+function approvePayment(orderId){
+ const orders=getData(DB_KEYS.orders).map(o=>{
+   if(o.id===orderId){
+     return{...o,approvalStatus:'approved',status:'paid'};
+   }
+   return o;
+ });
+ setData(DB_KEYS.orders,orders);
+ 
+ const notifs=getData(DB_KEYS.notifications);
+ notifs.unshift({
+   id:Date.now(),
+   type:'approve',
+   title:'Payment Approved',
+   message:`Order ${orderId} has been approved`,
+   orderId:orderId,
+   read:false,
+   createdAt:new Date().toISOString()
+ });
+ setData(DB_KEYS.notifications,notifs);
+ 
+ renderAdminOrders();
+ renderNotifications();
+ updateAdminStats();
+ showToast('Payment approved!','success');
+}
+
+function renderAdminOrders(){
+ const orders=getData(DB_KEYS.orders);
+ const tbody=document.getElementById('adminOrdersTable');
+ tbody.innerHTML=orders.length?orders.map(o=>`
+   <tr>
+     "name">${o.userName}</span><br><small style="color:var(--text-muted)">${o.userPhone}</small></td>
+    <td>${o.productName}</td>
+    <td>₦${o.amount.toLocaleString()}</td>
+    <td><span class="badge-status ${o.approvalStatus==='approved'?'badge-approved':o.approvalStatus==='declined'?'badge-declined':'badge-pending'}">${o.approvalStatus}</span></td>
+    <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+    <td class="actions">
+      ${o.approvalStatus==='pending'?`
+        <button class="btn-sm btn-approve" onclick="approvePayment('${o.id}')"><i class="fas fa-check"></i> Approve</button>
+        <button class="btn-sm btn-decline" onclick="openDeclineModal('${o.id}')"><i class="fas fa-times"></i> Decline</button>
+      `:`<span style="color:var(--text-muted);font-size:0.8rem">${o.approvalStatus==='declined'?o.declineReason:'Completed'}</span>`}
+    </td>
+  </tr>
+`).join(''):'<tr><td colspan="6" style="text-align:center;padding:50px;color:var(--text-muted)"><i class="fas fa-shopping-bag" style="font-size:2rem;display:block;margin-bottom:10px"></i>No orders yet</td></tr>';
+}
+
+function renderNotifications(){
+const notifs=getData(DB_KEYS.notifications);
+const container=document.getElementById('notificationsList');
+const unreadCount=notifs.filter(n=>!n.read).length;
+const badge=document.getElementById('notifBadge');
+badge.textContent=unreadCount;
+badge.classList.toggle('hidden',unreadCount===0);
+
+container.innerHTML=notifs.length?notifs.map(n=>`
+  <div class="notif-item ${n.read?'':'unread'}" onclick="markNotifRead(${n.id})">
+    <h4>${n.read?'':'<span class="notif-dot"></span>'}${n.title}</h4>
+    <p>${n.message}</p>
+    <div class="time"><i class="fas fa-clock"></i> ${new Date(n.createdAt).toLocaleString()}</div>
+    ${n.type==='decline'?`<div class="notif-reason"><strong>Reason:</strong> ${n.message.split('Reason: ')[1]||''}</div>`:''}
+  </div>
+`).join(''):'<div class="empty-state"><i class="fas fa-bell-slash"></i><p>No notifications yet</p></div>';
+}
+
+function markNotifRead(id){
+const notifs=getData(DB_KEYS.notifications).map(n=>n.id===id?{...n,read:true}:n);
+setData(DB_KEYS.notifications,notifs);
+renderNotifications();
+}
+
+function renderAdminUsers(){
+const users=getData(DB_KEYS.users).filter(u=>!u.isAdmin);
+const tbody=document.getElementById('adminUsersTable');
+tbody.innerHTML=users.length?users.map(u=>`
+  <tr>
+    <td><span class="name">${u.name}</span></td>
+    <td>${u.email}</td>
+    <td>${u.phone}</td>
+    <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+  </tr>
+`).join(''):'<tr><td colspan="4" style="text-align:center;padding:50px;color:var(--text-muted)"><i class="fas fa-users" style="font-size:2rem;display:block;margin-bottom:10px"></i>No users yet</td></tr>';
+}
+
+function updateAdminStats(){
+const orders=getData(DB_KEYS.orders);
+document.getElementById('statProducts').textContent=getData(DB_KEYS.products).length;
+document.getElementById('statOrders').textContent=orders.length;
+document.getElementById('statPending').textContent=orders.filter(o=>o.approvalStatus==='pending').length;
+document.getElementById('statUsers').textContent=getData(DB_KEYS.users).filter(u=>!u.isAdmin).length;
+}
+
+function renderUserOrders(){
+const user=JSON.parse(localStorage.getItem(DB_KEYS.currentUser)||'null');
+if(!user)return;
+const orders=getData(DB_KEYS.orders).filter(o=>o.userId===user.id).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+const container=document.getElementById('userOrdersList');
+if(!orders.length){
+  container.innerHTML='<div class="empty-state"><i class="fas fa-shopping-bag"></i><p>No orders yet</p></div>';
+  return;
+}
+container.innerHTML=orders.map(o=>`
+  <div class="table-wrap" style="margin-bottom:20px">
+    <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem">${o.productName}</h3>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-top:4px">Order ID: ${o.id} | ${new Date(o.createdAt).toLocaleDateString()}</p>
+      </div>
+      <span class="badge-status ${o.approvalStatus==='approved'?'badge-approved':o.approvalStatus==='declined'?'badge-declined':'badge-pending'}">${o.approvalStatus}</span>
+    </div>
+    <div style="padding:20px 24px">
+      <p style="margin-bottom:8px"><strong>Amount:</strong> ₦${o.amount.toLocaleString()}</p>
+      <p style="margin-bottom:8px"><strong>Status:</strong> ${o.status}</p>
+      ${o.approvalStatus==='declined'?`
+        <div class="order-status-card declined" style="margin-top:16px">
+          <i class="fas fa-times-circle"></i>
+          <h4>Payment Declined</h4>
+          <p>Your payment was not approved by admin</p>
+          <div class="reason"><strong>Reason:</strong> ${o.declineReason}</div>
+        </div>
+      `:''}
+      ${o.approvalStatus==='approved'?`
+        <div class="order-status-card approved" style="margin-top:16px">
+          <i class="fas fa-check-circle"></i>
+          <h4>Payment Approved</h4>
+          <p>Your payment has been confirmed. Your order is being processed.</p>
+        </div>
+      `:''}
+    </div>
+  </div>
+`).join('');
+}
+
+function showAdminTab(tab,el){
+document.querySelectorAll('.admin-tab').forEach(t=>t.classList.add('hidden'));
+document.getElementById('admin'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.remove('hidden');
+document.querySelectorAll('.admin-nav a').forEach(a=>a.classList.remove('active'));
+if(el)el.classList.add('active');
+document.getElementById('adminTitle').textContent=tab.charAt(0).toUpperCase()+tab.slice(1);
+if(tab==='notifications')renderNotifications();
+if(tab==='orders')renderAdminOrders();
+if(tab==='users')renderAdminUsers();
+if(tab==='products')renderAdminProducts();
+if(tab==='dashboard')updateAdminStats();
+}
+
+function toggleMobileMenu(){
+const links=document.getElementById('navLinks');
+links.classList.toggle('show');
+}
+
+window.onclick=function(e){
+if(e.target.classList.contains('modal-overlay'))e.target.classList.remove('active');
+}
+
+initDB();
+loadTheme();
+updateNav();
+renderFeatured();
+</script>
+</body>
+</html>
